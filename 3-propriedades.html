@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes</title>
+</head>
+<body>
+    <div id="root">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+            const buttonVariants = {
+                default: 'bg-gray-500',
+                primary: 'bg-purple-500',
+            }
+            const buttonHover={
+                default: 'hover:bg-gray-600',
+                primary: 'hover:bg-purple-600',
+            }
+            const buttonSizes = {
+                small: 'px-2 py-1 text-sm',
+                medium: 'px-4 py-2 text-base',
+                large: 'px-6 py-3 text-lg',
+            }
+            function Button({variant = 'default', className, hover,buttonSizes, children, ...props}){
+                return(
+                    <button className={`
+                        px-4 py-2 rounded text-white cursor-pointer
+                        ${buttonVariants[variant]}
+                        ${buttonHover[hover]}
+                        ${className}`}
+                        {...props}>
+                    {children}
+                   </button> 
+                ) 
+            }
+
+            function App(){
+                return(
+                    <main className=" flex gap-2 p-3">
+                        <Button title="Meu Botão" className='mr-14' hover="default">
+                            Meu Botão
+                        </Button>
+                        <Button variant="primary" hover="primary">
+                            Outro Botão
+                        </Button>
+                    </main>
+
+                )
+                
+            }
+
+            ReactDOM.createRoot(document.getElementById('root')).render(
+                <App />
+            )
+        
+        </script>
+    </div>
+    
+</body>
+</html>
